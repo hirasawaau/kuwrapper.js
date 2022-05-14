@@ -1,4 +1,4 @@
-export interface KUClassScheduleCourse {
+export class KUClassScheduleCourse {
   section_id: number
   groupheader: string
   weekstartday: Date
@@ -25,12 +25,12 @@ export interface KUClassScheduleCourse {
   time_start: number
 }
 
-export interface KUClassScheduleResult {
+export class KUClassScheduleResult {
   peroid_date: string
   course: KUClassScheduleCourse[]
 }
 
-export interface KUClassScheduleResponse {
+export class KUClassScheduleResponse {
   code: string
   results: KUClassScheduleResult[]
   cache: boolean

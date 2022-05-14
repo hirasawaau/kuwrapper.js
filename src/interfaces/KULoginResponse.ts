@@ -1,4 +1,4 @@
-export interface KUStudentInfo {
+export class KUStudentInfo {
   loginName: string
   stdId: string
   stdCode: string
@@ -46,7 +46,7 @@ export interface KUStudentInfo {
   mobileNo: string
 }
 
-export interface KURoleMenu {
+export class KURoleMenu {
   menuId: number
   menuNameTh: string
   menuUrl: string
@@ -55,7 +55,7 @@ export interface KURoleMenu {
   menuType: number
 }
 
-export interface KUUser {
+export class KUUser {
   loginName: string
   userType: string
   idCode: string
@@ -73,7 +73,7 @@ export interface KUUser {
   roleMenus: KURoleMenu[]
 }
 
-export interface KULoginResponse {
+export class KULoginResponse {
   code: string
   message: string
   accesstoken: string
