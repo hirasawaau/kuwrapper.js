@@ -11,10 +11,7 @@
     "semantic-release": "semantic-release --branches main",
     "commit": "git-cz"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/hirasawaau/kuwrapper.js.git"
-  },
+  "repository": "github:hirasawaau/kuwrapper.js",
   "author": "Hirasawa Ishigawa",
   "license": "ISC",
   "bugs": {
