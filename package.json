@@ -8,7 +8,6 @@
     "test:cov": "jest --coverage",
     "lint": "eslint \"src/**/*.ts\"",
     "lint:fix": "eslint \"src/**/*.ts\" --fix",
-    "semantic-release": "semantic-release --branches main",
     "commit": "git-cz"
   },
   "repository": "github:hirasawaau/kuwrapper.js",
@@ -42,5 +41,10 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
   }
 }
