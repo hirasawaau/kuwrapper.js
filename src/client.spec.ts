@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { AxiosInstance } from './axios'
 import { KUClientInstance } from './client'
 import { KULoginResponse, KUStudentInfo, KUUser } from './interfaces'

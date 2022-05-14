@@ -9,8 +9,10 @@ import { KUStudentInfoResponse } from './interfaces/KUStudentInfoResponse'
 
 export class KUClientInstance {
   private readonly axiosInstance = new AxiosInstance()
-  private semester: number = 0
-  private academicYear: number = 0
+
+  private semester = 0
+
+  private academicYear = 0
 
   /**
    * @hideconstructor This constructor should not be called directly. Use createClient instead.
