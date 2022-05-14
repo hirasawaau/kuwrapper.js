@@ -1,0 +1,17 @@
+name: release
+
+on:
+  - workflow_dispatch
+
+jobs:
+  release:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Semantic Release
+      - run: npm ci
+      - run: npm run semantic-release
+        env:
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+

@@ -1,4 +1,4 @@
-name: Test
+name: test
 
 on: 
   push:
@@ -27,3 +27,7 @@ jobs:
         run: npm i
       - name: "Test"
         run: npm run test:cov
+
+    
+
+
