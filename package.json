@@ -1,17 +1,18 @@
 {
   "name": "kuwrapper",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "description": "",
   "main": "src/index.ts",
   "scripts": {
     "test": "jest",
     "test:cov": "jest --coverage",
     "lint": "eslint \"src/**/*.ts\"",
-    "lint:fix": "eslint \"src/**/*.ts\" --fix"
+    "lint:fix": "eslint \"src/**/*.ts\" --fix",
+    "semantic-release": "semantic-release --branches main"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hirasawaau/kuwrapper.js.git"
+    "url": "https://github.com/hirasawaau/kuwrapper.js.git"
   },
   "author": "Hirasawa Ishigawa",
   "license": "ISC",
@@ -32,7 +33,8 @@
     "prettier": "^2.6.2",
     "ts-jest": "^28.0.2",
     "ts-node": "^10.7.0",
-    "typescript": "^4.6.4"
+    "typescript": "^4.6.4",
+    "semantic-release": "^19.0.2"
   },
   "dependencies": {
     "axios": "^0.27.2"
