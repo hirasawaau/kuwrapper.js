@@ -12,7 +12,7 @@ jobs:
         name: Install Module
       - run: npm run semantic-release
         name: Release
-        env:
-          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        env: 
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
