@@ -1,29 +1,36 @@
-import axios from 'axios'
+import { AxiosInstance } from './axios'
+import { KUAllGradeResponse } from './interfaces/KUAllGradesResponse'
 import { KUClassScheduleResponse } from './interfaces/KUClassScheduleResponse'
+import { KUEnrollResultResponse } from './interfaces/KUEnrollResultResponse'
+import { KUGpaxResponse } from './interfaces/KUGpaxResponse'
 import { KULoginResponse } from './interfaces/KULoginResponse'
 import { KUScheduleResponse } from './interfaces/KUScheduleResponse'
-
-const defaultInstance = axios.create({
-  baseURL: 'https://myapi.ku.th/',
-  headers: {
-    'app-key': 'txCR5732xYYWDGdd49M3R19o1OVwdRFc',
-  },
-})
+import { KUStudentInfoResponse } from './interfaces/KUStudentInfoResponse'
 
 export class KUClientInstance {
-  private readonly axiosInstance = defaultInstance
-  private semester: number
-  private academicYear: number
+  private readonly axiosInstance = new AxiosInstance()
+  private semester: number = 0
+  private academicYear: number = 0
 
-  private constructor(private readonly loginResponse: KULoginResponse) {}
+  /**
+   * @hideconstructor This constructor should not be called directly. Use createClient instead.
+   * @param loginResponse Login Response from my.ku.th
+   */
+  constructor(private readonly loginResponse: KULoginResponse) {}
 
-  private async init() {
-    this.axiosInstance.defaults.headers.common['x-access-token'] =
-      this.loginResponse.accesstoken
+  /**
+   * Initialize KU client instance by set access token from login response and fetch current schedule
+   * This function will be called in createFromAuth
+   * @returns Initialized KU client instance
+   * @example
+   * const instance = await instance.init()
+   */
+  async init() {
+    this.axiosInstance.setAccessToken(this.loginResponse.accesstoken)
 
     const schedules = await this.getSchedules()
-    this.semester = schedules?.[0].semester ?? 0
-    this.academicYear = schedules?.[0].academicYr ?? 0
+    this.semester = schedules?.results?.[0].semester ?? 0
+    this.academicYear = schedules?.results?.[0].academicYr ?? 0
 
     return this
   }
@@ -35,7 +42,7 @@ export class KUClientInstance {
    * @returns Current Semester And Course
    */
 
-  async getSchedules() {
+  getSchedules() {
     const {
       studentStatusCode: stdStatusCode,
       campusCode,
@@ -43,70 +50,92 @@ export class KUClientInstance {
       majorCode,
     } = this.loginResponse.user.student
 
-    try {
-      const { data } = await this.axiosInstance.get<KUScheduleResponse>(
-        '/common/getschedule',
-        {
-          params: {
-            userType: this.loginResponse.user.userType,
-            stdStatusCode,
-            campusCode,
-            facultyCode,
-            majorCode,
-          },
-        },
-      )
-
-      return data.results
-    } catch (e) {
-      if (axios.isAxiosError(e)) {
-        throw new Error(e.message)
-      }
-    }
-  }
-
-  async getClassSchedule() {
-    try {
-      const { data } = await this.axiosInstance.get<KUClassScheduleResponse>(
-        '/std-profile/getGroupCourse',
-        {
-          params: {
-            academicYear: this.academicYear,
-            semester: this.semester,
-            stdId: this.loginResponse.user.student.stdId,
-          },
-        },
-      )
-
-      return data
-    } catch (e) {
-      if (axios.isAxiosError(e)) {
-        throw new Error(e.message)
-      }
-    }
+    return this.axiosInstance.get<KUScheduleResponse>('/common/getschedule', {
+      params: {
+        userType: this.loginResponse.user.userType,
+        stdStatusCode,
+        campusCode,
+        facultyCode,
+        majorCode,
+      },
+    })
   }
 
   /**
-   * Create KU Client Instance From My KU's Authentication
-   * @param username KU Username e.g. 'bxxxxxxxxxx'
-   * @param password KU Password
-   * @returns KU Client Instance
+   * Get All User's Schedule [Class/Exam Schedule]
+   * API: GET https://myapi.ku.th/std-profile/getGroupCourse
+   *
+   * @returns Current Semester And Course
    */
-  static async createFromAuth(username: string, password: string) {
-    const { data } = await defaultInstance.post<KULoginResponse>(
-      '/auth/login',
-      { username, password },
+  getClassSchedule() {
+    return this.axiosInstance.get<KUClassScheduleResponse>(
+      '/std-profile/getGroupCourse',
+      {
+        params: {
+          academicYear: this.academicYear,
+          semester: this.semester,
+          stdId: this.loginResponse.user.student.stdId,
+        },
+      },
     )
-
-    return new KUClientInstance(data).init()
   }
 
   /**
-   * Create KU Client Instance From My KU's Login Response
-   * @param loginResponse KU Login Response
+   * Get Approved,Wait for Approval and Rejected Enrollments
+   *
+   * API: POST https://myapi.ku.th/std-profile/getEnrollResults
+   * @returns Enroll Result Response
    */
+  getRegisteredCourses() {
+    return this.axiosInstance.post<KUEnrollResultResponse>(
+      '/enroll/searchEnrollResult',
+      {
+        academicYear: this.academicYear.toString(),
+      },
+    )
+  }
 
-  static createFromLoginResponse(loginResponse: KULoginResponse) {
-    return new KUClientInstance(loginResponse).init()
+  /**
+   * Get GPAX And Credit Summary
+   * API: GET https://myapi.ku.th/stddashboard/gpax
+   * @returns GPAX And Credit Summary
+   */
+  getGpax() {
+    return this.axiosInstance.get<KUGpaxResponse>('/stddashboard/gpax', {
+      params: {
+        stdId: this.loginResponse.user.student.stdId,
+      },
+    })
+  }
+
+  /**
+   * Get All Grades that User Has
+   * @returns All Grades
+   */
+  getAllGrades() {
+    return this.axiosInstance.get<KUAllGradeResponse>(
+      '/std-profile/checkGrades',
+      {
+        params: {
+          idcode: this.loginResponse.user.student.stdCode,
+        },
+      },
+    )
+  }
+
+  /**
+   * Get User Information
+   * API: GET https://myapi.ku.th/std-profile/getStdPersonal
+   * @returns User Information
+   */
+  getInformation() {
+    return this.axiosInstance.get<KUStudentInfoResponse>(
+      '/std-profile/getStdPersonal',
+      {
+        params: {
+          stdId: this.loginResponse.user.student.stdId,
+        },
+      },
+    )
   }
 }
