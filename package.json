@@ -8,7 +8,8 @@
     "test:cov": "jest --coverage",
     "lint": "eslint \"src/**/*.ts\"",
     "lint:fix": "eslint \"src/**/*.ts\" --fix",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "semantic-release": "semantic-release"
   },
   "repository": "github:hirasawaau/kuwrapper.js",
   "author": "Hirasawa Ishigawa",
