@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/hirasawaau/kuwrapper.js/compare/v1.0.0...v1.0.1) (2022-05-15)
+
+
+### Bug Fixes
+
+* change package.json license ([22d6344](https://github.com/hirasawaau/kuwrapper.js/commit/22d63440f4f02bd01f37e9b79b7906cfa8d2fffb)), closes [#10](https://github.com/hirasawaau/kuwrapper.js/issues/10)
+
 # 1.0.0 (2022-05-15)
 
 
