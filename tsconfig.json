@@ -10,6 +10,8 @@
     "strict": true,
     "strictPropertyInitialization": false,
     "skipLibCheck": true,
-    "baseUrl": "./"
-  }
+    "baseUrl": "./",
+    "declaration": true
+  },
+  "exclude": ["**/*.spec.ts"]
 }
