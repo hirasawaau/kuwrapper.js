@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/hirasawaau/kuwrapper.js/compare/v1.0.1...v1.0.2) (2022-05-15)
+
+
+### Bug Fixes
+
+* **npm:** change main and type in package.json ([f2e9ef3](https://github.com/hirasawaau/kuwrapper.js/commit/f2e9ef33e46b4d07d2706560a600579dbc3e4808))
+
 ## [1.0.1](https://github.com/hirasawaau/kuwrapper.js/compare/v1.0.0...v1.0.1) (2022-05-15)
 
 
