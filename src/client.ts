@@ -40,6 +40,11 @@ export class KUClientInstance {
   /**
    * Get Current Schedules
    * API: GET https://myapi.ku.th/common/getschedule
+   * @requires userType
+   * @requires studentStatusCode
+   * @requires campusCode
+   * @requires facultyCode
+   * @requires majorCode
    *
    * @returns Current Semester And Course
    */
@@ -66,6 +71,9 @@ export class KUClientInstance {
   /**
    * Get All User's Schedule [Class/Exam Schedule]
    * API: GET https://myapi.ku.th/std-profile/getGroupCourse
+   * @requires academicYear
+   * @requires Semester
+   * @requires stdId
    *
    * @returns Current Semester And Course
    */
@@ -86,6 +94,7 @@ export class KUClientInstance {
    * Get Approved,Wait for Approval and Rejected Enrollments
    *
    * API: POST https://myapi.ku.th/std-profile/getEnrollResults
+   * @requires academicYear
    * @returns Enroll Result Response
    */
   getRegisteredCourses() {
@@ -100,6 +109,7 @@ export class KUClientInstance {
   /**
    * Get GPAX And Credit Summary
    * API: GET https://myapi.ku.th/stddashboard/gpax
+   * @requires stdId
    * @returns GPAX And Credit Summary
    */
   getGpax() {
@@ -112,6 +122,7 @@ export class KUClientInstance {
 
   /**
    * Get All Grades that User Has
+   * @requires idCode
    * @returns All Grades
    */
   getAllGrades() {
@@ -119,7 +130,7 @@ export class KUClientInstance {
       '/std-profile/checkGrades',
       {
         params: {
-          idcode: this.loginResponse.user.student.stdCode,
+          idcode: this.loginResponse.user.idCode,
         },
       },
     )
@@ -128,6 +139,7 @@ export class KUClientInstance {
   /**
    * Get User Information
    * API: GET https://myapi.ku.th/std-profile/getStdPersonal
+   * @requires stdId
    * @returns User Information
    */
   getInformation() {
