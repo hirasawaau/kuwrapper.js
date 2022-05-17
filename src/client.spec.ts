@@ -99,6 +99,8 @@ describe('KuClientInstance', () => {
         '/enroll/searchEnrollResult',
         {
           academicYear: instance['academicYear'].toString(),
+          semester: instance['semester'].toString(),
+          stdid: instance['loginResponse'].user.student.stdId,
         },
       )
     })

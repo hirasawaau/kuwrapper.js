@@ -17,8 +17,8 @@ describe('createClientInstance', () => {
       await createClientInstance(username, password)
 
       expect(mockedPost).toHaveBeenCalledWith('/auth/login', {
-        arg1: username,
-        arg2: password,
+        username,
+        password,
       })
 
       expect(initFunction).toHaveBeenCalled()
