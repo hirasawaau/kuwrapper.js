@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/hirasawaau/kuwrapper.js/compare/v1.1.0...v1.1.1) (2022-05-17)
+
+
+### Bug Fixes
+
+* can't fetch some features ([3ff3e46](https://github.com/hirasawaau/kuwrapper.js/commit/3ff3e46b351e76ab3bd6818d1f8b59016c1653d6))
+
 # [1.1.0](https://github.com/hirasawaau/kuwrapper.js/compare/v1.0.3...v1.1.0) (2022-05-17)
 
 
