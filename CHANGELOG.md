@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/hirasawaau/kuwrapper.js/compare/v1.0.3...v1.1.0) (2022-05-17)
+
+
+### Features
+
+* personal payload ([#13](https://github.com/hirasawaau/kuwrapper.js/issues/13)) ([5cbb85a](https://github.com/hirasawaau/kuwrapper.js/commit/5cbb85a0e85ba42c641c83d69488ff1d8c58056d))
+
 ## [1.0.3](https://github.com/hirasawaau/kuwrapper.js/compare/v1.0.2...v1.0.3) (2022-05-17)
 
 
