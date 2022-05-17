@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/hirasawaau/kuwrapper.js/compare/v1.0.2...v1.0.3) (2022-05-17)
+
+
+### Bug Fixes
+
+* Use idCode instead stdId for fetching grade ([#12](https://github.com/hirasawaau/kuwrapper.js/issues/12)) ([8760cff](https://github.com/hirasawaau/kuwrapper.js/commit/8760cff8eb99b9e0b82f6af3cf8beed0a3cc3369))
+
 ## [1.0.2](https://github.com/hirasawaau/kuwrapper.js/compare/v1.0.1...v1.0.2) (2022-05-15)
 
 
