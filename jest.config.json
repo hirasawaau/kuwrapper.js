@@ -10,7 +10,12 @@
   "moduleNameMapper": {
     "^src/(.*)$": "<rootDir>/$1"
   },
-  "collectCoverageFrom": ["**/*.ts", "!**/interfaces/**", "!index.ts"],
+  "collectCoverageFrom": [
+    "**/*.ts",
+    "!**/interfaces/**",
+    "!index.ts",
+    "!**/errors/**"
+  ],
   "coverageThreshold": {
     "global": {
       "statements": 100,

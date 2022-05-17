@@ -95,14 +95,20 @@ export class KUClientInstance {
    *
    * API: POST https://myapi.ku.th/std-profile/getEnrollResults
    * @requires academicYear
+   * @requires stdId
+   * @requires semester
    * @returns Enroll Result Response
    */
   getRegisteredCourses() {
+    const obj = {
+      academicYear: this.academicYear.toString(),
+      semester: this.semester.toString(),
+      stdid: this.loginResponse.user.student.stdId,
+    }
+
     return this.axiosInstance.post<KUEnrollResultResponse>(
       '/enroll/searchEnrollResult',
-      {
-        academicYear: this.academicYear.toString(),
-      },
+      obj,
     )
   }
 

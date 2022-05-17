@@ -1,5 +1,6 @@
 import { AxiosInstance } from './axios'
 import { KUClientInstance } from './client'
+import { UserInputError } from './errors/user-input'
 import { KULoginResponse } from './interfaces'
 
 /**
@@ -37,11 +38,14 @@ export async function createClientInstance(
 ): Promise<KUClientInstance> {
   const axiosInstance = new AxiosInstance()
   if (typeof arg1 === 'string') {
-    console.log(arg1)
-    const data = await axiosInstance.post<KULoginResponse>('/auth/login', {
-      arg1,
-      arg2,
-    })
+    const data = await axiosInstance
+      .post<KULoginResponse>('/auth/login', {
+        username: arg1,
+        password: arg2,
+      })
+      .catch(() => {
+        throw new UserInputError('Invalid username or password')
+      })
 
     return new KUClientInstance(data).init()
   }
