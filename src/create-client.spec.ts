@@ -1,6 +1,8 @@
+import { AxiosError } from 'axios'
 import { AxiosInstance } from './axios'
 import { KUClientInstance } from './client'
 import { createClientInstance } from './create-client'
+import { UserInputError } from './errors/user-input'
 import { KULoginResponse } from './interfaces'
 
 describe('createClientInstance', () => {
@@ -22,6 +24,16 @@ describe('createClientInstance', () => {
       })
 
       expect(initFunction).toHaveBeenCalled()
+    })
+
+    it('should error when request error', async () => {
+      const mockedPost = jest
+        .spyOn(AxiosInstance.prototype, 'post')
+        .mockRejectedValue(new AxiosError())
+
+      await expect(
+        createClientInstance('username', 'password'),
+      ).rejects.toThrow(UserInputError)
     })
   })
 
