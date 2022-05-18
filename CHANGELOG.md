@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/hirasawaau/kuwrapper.js/compare/v1.1.1...v1.2.0) (2022-05-18)
+
+
+### Features
+
+* Fetch section by subject id and section code ([725c28b](https://github.com/hirasawaau/kuwrapper.js/commit/725c28b5b7c34336857515fd0b946866f06d885d))
+
 ## [1.1.1](https://github.com/hirasawaau/kuwrapper.js/compare/v1.1.0...v1.1.1) (2022-05-17)
 
 
