@@ -144,4 +144,24 @@ describe('KuClientInstance', () => {
       })
     })
   })
+
+  describe('getSection', () => {
+    it('should get to myapi.ku.th/std-profile/getSection with correct data', async () => {
+      const subjectCode = '1'
+      const section = '1'
+      await instance.getSection(subjectCode, section)
+      expect(axiosInstance.get).toHaveBeenCalledWith(
+        '/enroll/openSubjectForEnroll',
+        {
+          params: {
+            query: subjectCode,
+            academicYear: instance['academicYear'],
+            semester: instance['semester'],
+            campusCode: response.user.student.campusCode,
+            section,
+          },
+        },
+      )
+    })
+  })
 })

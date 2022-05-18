@@ -1,4 +1,5 @@
 import { AxiosInstance } from './axios'
+import { KUSectionResponse } from './interfaces'
 import { KUAllGradeResponse } from './interfaces/KUAllGradesResponse'
 import { KUClassScheduleResponse } from './interfaces/KUClassScheduleResponse'
 import { KUEnrollResultResponse } from './interfaces/KUEnrollResultResponse'
@@ -154,6 +155,27 @@ export class KUClientInstance {
       {
         params: {
           stdId: this.loginResponse.user.student.stdId,
+        },
+      },
+    )
+  }
+
+  /**
+   * Get section by subject code and section code
+   *
+   * @param subjectCode subject code e.g. 01355119-64 [English Reading]
+   * @param sectionCode section code e.g. 1 [Section 1]
+   */
+  getSection(subjectCode: string, sectionCode: string) {
+    return this.axiosInstance.get<KUSectionResponse>(
+      '/enroll/openSubjectForEnroll',
+      {
+        params: {
+          query: subjectCode,
+          academicYear: this.academicYear,
+          semester: this.semester,
+          campusCode: this.loginResponse.user.student.campusCode,
+          section: sectionCode,
         },
       },
     )
