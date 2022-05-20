@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/hirasawaau/kuwrapper.js/compare/v1.2.0...v1.3.0) (2022-05-20)
+
+
+### Features
+
+* 🎸 fetch section detail from section id ([556e08d](https://github.com/hirasawaau/kuwrapper.js/commit/556e08da43f92edbe7b5df794f9db34473137087))
+
 # [1.2.0](https://github.com/hirasawaau/kuwrapper.js/compare/v1.1.1...v1.2.0) (2022-05-18)
 
 
