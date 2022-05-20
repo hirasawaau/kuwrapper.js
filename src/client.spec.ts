@@ -164,4 +164,19 @@ describe('KuClientInstance', () => {
       )
     })
   })
+
+  describe('getSectionDetail', () => {
+    it('should get to myapi.ku.th//enroll/searchSectionDetail with correct data', async () => {
+      const sectionId = '1'
+      await instance.getSectionDetail(sectionId)
+      expect(axiosInstance.get).toHaveBeenCalledWith(
+        '/enroll/searchSectionDetail',
+        {
+          params: {
+            sectionId,
+          },
+        },
+      )
+    })
+  })
 })

@@ -6,6 +6,7 @@ import { KUEnrollResultResponse } from './interfaces/KUEnrollResultResponse'
 import { KUGpaxResponse } from './interfaces/KUGpaxResponse'
 import { KULoginResponse } from './interfaces/KULoginResponse'
 import { KUScheduleResponse } from './interfaces/KUScheduleResponse'
+import { KUSectionDetailResponse } from './interfaces/KUSectionDetailResponse'
 import { KUStudentInfoResponse } from './interfaces/KUStudentInfoResponse'
 
 export class KUClientInstance {
@@ -176,6 +177,22 @@ export class KUClientInstance {
           semester: this.semester,
           campusCode: this.loginResponse.user.student.campusCode,
           section: sectionCode,
+        },
+      },
+    )
+  }
+
+  /**
+   * Get section detail e.g. schedules
+   * @param sectionId section id
+   */
+
+  getSectionDetail(sectionId: string) {
+    return this.axiosInstance.get<KUSectionDetailResponse>(
+      '/enroll/searchSectionDetail',
+      {
+        params: {
+          sectionId,
         },
       },
     )
