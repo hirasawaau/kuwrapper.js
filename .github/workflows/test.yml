@@ -1,9 +1,9 @@
 name: Test
 
-on: 
+on:
   pull_request:
     types:
-      - "opened"
+      - 'opened'
 
 jobs:
   lint:
@@ -12,19 +12,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Module
-        run: npm i
+        run: pnpm install
       - name: Lint
-        run: npm run lint
+        run: pnpm run lint
   test:
     runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
       - name: Install Module
-        run: npm i
-      - name: "Test"
-        run: npm run test:cov
-
-    
-
-
+        run: pnpm install
+      - name: 'Test'
+        run: pnpm run test:cov
