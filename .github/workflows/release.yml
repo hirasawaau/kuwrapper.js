@@ -6,7 +6,6 @@ on:
 jobs:
   cache-and-install:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -38,40 +37,40 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-  lint:
-    runs-on: ubuntu-20.04
+    lint:
+      runs-on: ubuntu-20.04
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install Module
-        run: pnpm install
-      - name: Lint
-        run: pnpm run lint
-  test:
-    runs-on: ubuntu-20.04
+      steps:
+        - uses: actions/checkout@v2
+        - name: Install Module
+          run: pnpm install
+        - name: Lint
+          run: pnpm run lint
+    test:
+      runs-on: ubuntu-20.04
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install Module
-        run: pnpm install
-      - name: 'Test'
-        run: pnpm run test:cov
+      steps:
+        - uses: actions/checkout@v2
+        - name: Install Module
+          run: pnpm install
+        - name: 'Test'
+          run: pnpm run test:cov
 
-  release:
-    needs:
-      - 'lint'
-      - 'test'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '16.x'
-      - run: pnpm install
-      - run: pnpm run build
-      - run: pnpm run semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    release:
+      needs:
+        - 'lint'
+        - 'test'
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            persist-credentials: false
+        - uses: actions/setup-node@v1
+          with:
+            node-version: '16.x'
+        - run: pnpm install
+        - run: pnpm run build
+        - run: pnpm run semantic-release
+          env:
+            GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
